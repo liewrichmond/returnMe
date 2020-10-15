@@ -1,0 +1,22 @@
+/* .loginField {
+    width: 20vw;
+    margin-top: 20px;
+}
+
+.loginButton{
+    margin-top: 20px;
+}
+
+
+.loginForm {
+    padding-left: 25%;
+    padding-right: 25%;
+} */
+
+.loginCard {
+    width: 50vw;
+}
+
+body {
+    margin:0
+}

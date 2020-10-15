@@ -1,0 +1,46 @@
+Automated Return Service
+---------------------------------------------------
+Too lazy  to return things? we'll take care of it for you.
+
+
+
+User Interfaces:
+1. Add a return
+2. Check return status
+3. Delete/Cancel a return
+
+
+Possible Features for Client Application
+---------------------------------------------------
+- Map tracker/ Live tracking of Return package?
+- 
+
+
+Server Requirements
+---------------------------------------------------
+- Add/Start/Schedule a new return
+	POST/PUT req 
+	- Add a return to some database?
+- Get return status
+	GET req
+	- Query a  database with return ID #?
+- Delete/Cancel a return
+	DELETE req
+	-  Delete a database entry?
+
+
+Database? -NEDB? MongoDB?
+---------------------------------------------------
+Schema  structure?
+ -  Store returns
+
+
+
+
+
+Returns
+---------------------------------------------------
+_id - unique identifier
+user - who put in return request - User Object? Name, account#?
+handler - who to give return to? USPS? UPS? FedEx? Amazon?
+
