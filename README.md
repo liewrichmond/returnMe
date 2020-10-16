@@ -9,4 +9,4 @@ You could do it yourself, but now you'd need to stop at the Amazon drop off, the
 This service solves that. Embrace the laziness. Have people do things for you.
 
 ## Why? 
-I felt like coding something and this sounded fun.
+My passion for coding burns deep in my heart if I don't code I will die. Recruiters pls give me a job.
