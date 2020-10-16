@@ -9,4 +9,4 @@ You could do it yourself, but now you'd need to stop at the Amazon drop off, the
 This service solves that. Embrace the laziness. Have people do things for you.
 
 ## Why? 
-My passion for coding burns deep in my heart if I don't code I will die. Recruiters pls give me a job.
+My passion for coding burns deep in my heart if I don't code I will die. Recruiters take note...
