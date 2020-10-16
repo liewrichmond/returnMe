@@ -1,3 +1,5 @@
 */.env
 */dist/
 */node_modules/
+# server/src/connect.ts
+# server/src/goose.ts
