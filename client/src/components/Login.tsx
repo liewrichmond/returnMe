@@ -87,11 +87,6 @@ const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
                     <img src={logo} />
                 </Grid>
                 <Grid item>
-                    <Typography variant="h6">
-                        Have someone do boring package returns for you
-                    </Typography>
-                </Grid>
-                <Grid item>
                     <form>
                         <div className={classes.loginField}>
                             <TextField id="username" error={formError} label="Username" variant="outlined" value={usernameValue} onChange={handleChange} required={true} fullWidth={true} />

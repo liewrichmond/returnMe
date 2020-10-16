@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from 'react-dom';
 import AuthenticationPage from "./components/Authenticationpage"
+import LandingPage from "./components/LandingPage"
 import BaseLayout from "./components/BaseLayout"
 import { Controller } from "./loginController"
 
@@ -23,7 +24,7 @@ export class App extends React.Component<{}, IAppState>{
   async submitForm(username: string, password: string): Promise<boolean> {
     const loginWorker: Controller = new Controller();
     const isAuthenticated = await loginWorker.login(username, password);
-    if (isAuthenticated) {
+    if (isAuthenticated) {  
       const userId: string  = await loginWorker.getUser()
       this.setState({ isAuthenticated: isAuthenticated, userId: userId })
       return true
@@ -40,6 +41,9 @@ export class App extends React.Component<{}, IAppState>{
   render() {
     return (
       <div>
+        <div>
+          <LandingPage />
+        </div>
         { !this.state.isAuthenticated && <AuthenticationPage onSubmissionClick={this.submitForm} />}
         { this.state.isAuthenticated && <BaseLayout onLogOutClick={this.logOut} userId={this.state.userId}/>}
       </div>
