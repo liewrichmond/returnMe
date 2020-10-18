@@ -13,6 +13,7 @@ const useStyles = makeStyles({
         overflow: "hidden"
     },
     background: {
+        background:"#eed4af"
     }
 })
 

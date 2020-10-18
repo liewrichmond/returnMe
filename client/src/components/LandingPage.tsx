@@ -14,7 +14,9 @@ const useStyles = makeStyles({
         backgroundColor: "#282828"
     },
     gridContainer: {
-        minHeight: "75vh"
+        minHeight: "75vh",
+        paddingRight: "10vw",
+        paddingLeft: "10vw"
     },
     svgContainer: {
         textAlign: 'center'
@@ -24,12 +26,12 @@ const useStyles = makeStyles({
     },
     headerText: {
         fontFamily: '"Means Web",Georgia,Times,"Times New Roman",serif',
-        fontSize: "4.25rem",
+        fontSize: "3.5rem",
         marginBottom: "20px"
     },
     headerSubText: {
         fontFamily: '"Means Web",Georgia,Times,"Times New Roman",serif',
-        fontSize: "2.5rem"
+        fontSize: "2.0rem"
     },
     CTAButton: {
         width: "10vw",
@@ -102,7 +104,7 @@ const LandingPage: React.FC = () => {
                     <Grid item md>
                         <div className={classes.headerContainer}>
                             <Typography variant="h3" className={classes.headerText}>Package returns made simple.</Typography>
-                            <Typography variant="h5" className={classes.headerSubText}>Pick up services by logistics handlers are overkill.<br />Most packages come with free returns.<br />Save the time, use ReturnMe. </Typography>
+                            <Typography variant="h5" className={classes.headerSubText}>Pick up services by logistics handlers are overkill. Most packages come with free returns. Just set a date, and we'll come your door to do the return for you. </Typography>
                             <Button variant="contained" className={classes.CTAButton} color="primary">
                                  <Typography >
                                     Check it Out

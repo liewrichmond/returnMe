@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Button, TextField, Typography } from "@material-ui/core";
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Card from '@material-ui/core/Card';
+import Box from '@material-ui/core/Box';
 import logo from "../static/img/logo.png"
 import { makeStyles } from "@material-ui/core/styles"
 import {Controller, User} from "../loginController"
@@ -81,7 +82,7 @@ const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
     }
 
     return (
-        <Card className="loginCard">
+        <Box style={{width: "50vw", background:"white"}} boxShadow={5}>
             <Grid container direction="column" alignItems="center" justify="center">
                 <Grid item>
                     <img src={logo} />
@@ -110,7 +111,7 @@ const Login: React.FC<ILoginProps> = (props: ILoginProps) => {
                     </form>
                 </Grid>
             </Grid>
-        </Card>
+        </Box>
     )
 }
 
