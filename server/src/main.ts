@@ -5,7 +5,6 @@ import passport = require('passport');
 import { Strategy } from "passport-local"
 import session = require('express-session')
 import bodyParser = require('body-parser')
-
 import { IReturn } from "./models/returns.model"
 import { IUser } from "./models/user.model"
 import * as returnsController from "./returnsController"
@@ -20,7 +19,10 @@ interface ISerializedUser {
 const app: Express = express();
 
 app.use(express.json());
-app.use("/", express.static(path.join(__dirname, "../../client/dist")));
+app.use(express.static(path.join(__dirname, "../../client/dist")));
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
+});
 app.use(function (inRequest: Request, inResponse: Response, inNext: NextFunction) {
   inResponse.header("Access-Control-Allow-Origin", "*");
   inResponse.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");

@@ -1,9 +1,10 @@
-import React from "react"
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
-import  Button from "@material-ui/core/Button"
+import Button from "@material-ui/core/Button"
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -41,8 +42,10 @@ const useStyles = makeStyles({
 
 })
 
+
 const LandingPage: React.FC = () => {
     const classes = useStyles()
+
     return (
         <div>
             <div className={classes.mainContainer}>
@@ -98,19 +101,21 @@ const LandingPage: React.FC = () => {
                                             d="m255.873 381.423c-5.523 0-10 4.478-10 10v.057c0 5.522 4.477 9.972 10 9.972s10-4.506 10-10.028-4.477-10.001-10-10.001z" />
                                     </g>
                                 </g>
-                            </svg>                        
+                            </svg>
                         </div>
                     </Grid>
                     <Grid item md>
                         <div className={classes.headerContainer}>
                             <Typography variant="h3" className={classes.headerText}>Package returns made simple.</Typography>
                             <Typography variant="h5" className={classes.headerSubText}>Pick up services by logistics handlers are overkill. Most packages come with free returns. Just set a date, and we'll come your door to do the return for you. </Typography>
-                            <Button variant="contained" className={classes.CTAButton} color="primary">
-                                 <Typography >
-                                    Check it Out
-                                 </Typography>
-                                 <ArrowForwardIosIcon style={{paddingLeft: "10px"}} />
-                            </Button>
+                            <Link to="/app">
+                                <Button variant="contained" className={classes.CTAButton} color="primary">
+                                    <Typography >
+                                        Check it Out
+                    </Typography>
+                                    <ArrowForwardIosIcon style={{ paddingLeft: "10px" }} />
+                                </Button>
+                            </Link>
                         </div>
                     </Grid>
                 </Grid>
@@ -118,7 +123,7 @@ const LandingPage: React.FC = () => {
             <div className={classes.secondaryContainer}>
                 <Grid className={classes.gridContainer} container direction="row" alignContent="center" justify="center" alignItems="center">
                     <Grid item md>
-                        <div className={classes.headerContainer} style={{marginLeft: "30px"}}>
+                        <div className={classes.headerContainer} style={{ marginLeft: "30px" }}>
                             <Typography variant="h3" className={classes.headerText} style={{ color: "rgb(219, 219, 219)" }}>Sound too good to be true?</Typography>
                             <Typography variant="h5" className={classes.headerSubText} style={{ color: "rgb(219, 219, 219)" }}>That's cause it is. This was meant to be a fun side project to practice some web dev skills. If this gets enough (or any) traction, I might revisit the idea.  </Typography>
                         </div>
