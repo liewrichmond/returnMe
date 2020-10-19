@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthenticationPage from "./Authenticationpage"
+import AuthenticationPage from "./AuthenticationPage"
 import BaseLayout from "./BaseLayout"
 import { Controller } from "../loginController"
 
