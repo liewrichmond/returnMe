@@ -17,6 +17,7 @@ interface ISerializedUser {
 }
 
 const app: Express = express();
+const PORT = process.env.PORT || 5000
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../../client/dist")));
@@ -133,7 +134,8 @@ app.get('/*', function (req, res) {
 });
 
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log("serving")
 });
 
+  
