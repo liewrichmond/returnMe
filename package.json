@@ -1,0 +1,19 @@
+{
+  "name": "returnme",
+  "version": "1.0.0",
+  "description": "A website for a service that picks up packages and does returns for you.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liewrichmond/returnMe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liewrichmond/returnMe/issues"
+  },
+  "homepage": "https://github.com/liewrichmond/returnMe#readme"
+}
