@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import ReactDOM from 'react-dom';
 import AuthenticationPage from "./Authenticationpage"
-import LandingPage from "./LandingPage"
 import BaseLayout from "./BaseLayout"
 import { Controller } from "../loginController"
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)

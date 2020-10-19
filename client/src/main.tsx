@@ -12,7 +12,7 @@ const Main: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <Route exact path="/">
+      <Route path="/*">
         {<Redirect to="/landing"/>}
       </Route>
       <Route path="/landing" component={LandingPage} />

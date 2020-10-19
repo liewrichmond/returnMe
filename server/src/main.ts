@@ -20,9 +20,6 @@ const app: Express = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../../client/dist")));
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
-});
 app.use(function (inRequest: Request, inResponse: Response, inNext: NextFunction) {
   inResponse.header("Access-Control-Allow-Origin", "*");
   inResponse.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
@@ -76,7 +73,7 @@ passport.deserializeUser(function (id: string, done: (err: any, user?: ISerializ
 });
 
 //Login Authentication
-app.post('/login', (inRequest: Request, inResponse: Response, next: NextFunction) => {
+app.post('/api/login', (inRequest: Request, inResponse: Response, next: NextFunction) => {
   passport.authenticate('local', (err, user: IUser, info) => {
     if (err) {
       return next(err);
@@ -91,13 +88,13 @@ app.post('/login', (inRequest: Request, inResponse: Response, next: NextFunction
 });
 
 //Logs out a user
-app.post('/logout', (inRequest: Request, inResponse: Response) => {
+app.post('/api/logout', (inRequest: Request, inResponse: Response) => {
   passport.deserializeUser(deserialize);
   inResponse.send("Successfully Logged Out");
 })
 
 //Signs up a new user
-app.post('/signup', async (inRequest: Request, inResponse: Response) => {
+app.post('/api/signup', async (inRequest: Request, inResponse: Response) => {
   const controller: userController.Controller = new userController.Controller();
   controller.addNewUser(inRequest.body).then((newUser: IUser) => {
     inResponse.send(newUser._id);
@@ -107,29 +104,34 @@ app.post('/signup', async (inRequest: Request, inResponse: Response) => {
 });
 
 //Gets all returns from a particular user
-app.get('/returns/user/:userId', async (inRequest: Request, inResponse: Response) => {
+app.get('/api/returns/user/:userId', async (inRequest: Request, inResponse: Response) => {
   const controller: returnsController.Controller = new returnsController.Controller();
   const returns: IReturn[] = await controller.listReturns(inRequest.params.userId);
   inResponse.send(returns);
 });
 
 //Creates a new return from a user
-app.put('/returns/user/:userId', async (inRequest: Request, inResponse: Response) => {
+app.put('/api/returns/user/:userId', async (inRequest: Request, inResponse: Response) => {
   const controller: returnsController.Controller = new returnsController.Controller();
   const confirmationNumber: IReturn = await controller.createReturn(inRequest.body);
   inResponse.send(confirmationNumber._id);
 })
 
 //Deletes a return
-app.delete('/user/:userId/returns/:returnId', async (inRequest: Request, inResponse: Response) => {
+app.delete('/api/user/:userId/returns/:returnId', async (inRequest: Request, inResponse: Response) => {
   const controller: returnsController.Controller = new returnsController.Controller();
   const confirmationNumber: number = await controller.deleteReturn(inRequest.params.returnId)
   inResponse.send(`deleted: ${confirmationNumber}`);
 })
 
-app.get('/users', (inRequest: Request, inResponse: Response) => {
+app.get('/api/users', (inRequest: Request, inResponse: Response) => {
   inResponse.send(inRequest.user);
 })
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
+});
+
 
 app.listen(80, () => {
   console.log("serving")

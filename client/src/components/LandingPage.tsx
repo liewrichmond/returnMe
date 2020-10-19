@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Link } from "react-router-dom";
+import  MaterialLink from '@material-ui/core/Link';
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -39,6 +40,14 @@ const useStyles = makeStyles({
         height: "50px",
         marginTop: "20px"
     },
+    footer: {
+        textAlign: "center",
+        backgroundColor: "black"
+    },
+    footerText: {
+        fontFamily: '"Means Web",Georgia,Times,"Times New Roman",serif',
+        color:"white"
+    }
 
 })
 
@@ -148,6 +157,11 @@ const LandingPage: React.FC = () => {
                         </div>
                     </Grid>
                 </Grid>
+            </div>
+            <div className={classes.footer}>
+                <Typography className={classes.footerText}>
+                    Icons made by <MaterialLink href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</MaterialLink> & <MaterialLink href="https://www.flaticon.com/authors/pongsakornred" title="pongsakornRed">pongsakornRed</MaterialLink> from <MaterialLink href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</MaterialLink>
+                </Typography>
             </div>
         </div>
     )

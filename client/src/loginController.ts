@@ -16,7 +16,7 @@ export class Controller {
             username: username,
             password: password
         }
-        return axios.post("/login", data).then((res: AxiosResponse<string>) => {
+        return axios.post("/api/login", data).then((res: AxiosResponse<string>) => {
             return true
         }).catch((err: AxiosError<string>) => {
             return false
@@ -24,16 +24,17 @@ export class Controller {
     }
 
     public async logOut(): Promise<void> {
-        return axios.post("/logout")
+        return axios.post("/api/logout")
     }
 
     public async getUser(): Promise<string> {
-        const response: AxiosResponse<SerializedUser> = await axios.get("/users")
+        const response: AxiosResponse<SerializedUser> = await axios.get("/api/users")
+        console.log(response)
         return response.data.id
     }
 
     public async createUser(user: User): Promise<boolean> {
-        return axios.post("/signup", user).then((res: AxiosResponse<string>) => {
+        return axios.post("/api/signup", user).then((res: AxiosResponse<string>) => {
             return true
         }).catch((error: AxiosError<string>) => {
             return false

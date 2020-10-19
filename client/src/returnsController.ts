@@ -23,16 +23,17 @@ export interface IReturn {
 
 export class Controller {
     public async getReturns(userId: string): Promise<IReturn[]> {
-        const response: AxiosResponse<IReturn[]> = await axios.get(`/returns/user/${userId}`)
+        const response: AxiosResponse<IReturn[]> = await axios.get(`/api/returns/user/${userId}`)
+        console.log(response)
         return response.data
     }
 
     public async createReturn(newReturn: IReturn): Promise<string> {
-        const response: AxiosResponse<string> = await axios.put(`/returns/user/${newReturn.userId}`, newReturn);
+        const response: AxiosResponse<string> = await axios.put(`/api/returns/user/${newReturn.userId}`, newReturn);
         return response.data
     }
     
     public async deleteReturn(toBeRemoved: IReturn): Promise<void> {
-        await axios.delete(`/user/${toBeRemoved.userId}/returns/${toBeRemoved._id}`)
+        await axios.delete(`/api/user/${toBeRemoved.userId}/returns/${toBeRemoved._id}`)
     }
 }
