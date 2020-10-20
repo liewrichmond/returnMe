@@ -69,6 +69,7 @@ passport.deserializeUser(function (id: string, done: (err: any, user?: ISerializ
     const deserializedUser: ISerializedUser = {id: user.id}
     done(null, deserializedUser);
   }).catch((err) => {
+    console.log(err.message)
     done(err);
   });
 });
@@ -97,11 +98,15 @@ app.post('/api/logout', (inRequest: Request, inResponse: Response) => {
 //Signs up a new user
 app.post('/api/signup', async (inRequest: Request, inResponse: Response) => {
   const controller: userController.Controller = new userController.Controller();
-  controller.addNewUser(inRequest.body).then((newUser: IUser) => {
-    inResponse.send(newUser._id);
-  }).catch((err: Error) => {
+  console.log("signing up")
+  try {
+    const newUser: IUser = await controller.addNewUser(inRequest.body)
+    inResponse.send(newUser._id)
+  }
+  catch (err: any) {
+    console.log(err.message)
     inResponse.status(403).send(err.message)
-  })
+  }
 });
 
 //Gets all returns from a particular user

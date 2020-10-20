@@ -29,7 +29,6 @@ export class Controller {
 
     public async getUser(): Promise<string> {
         const response: AxiosResponse<SerializedUser> = await axios.get("/api/users")
-        console.log(response)
         return response.data.id
     }
 

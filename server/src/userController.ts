@@ -30,52 +30,49 @@ export class Controller {
     public async verify(username: string, password: string): Promise<IUser> {
         const user: IUser | null = await this.userExists(username);
         this.db.close()
-        return new Promise((resolve, reject) => {
-            if (user === null) {
-                reject(new Error("Invalid Username"));
-            } else {
-                bcrypt.compare(password, user.password).then((result: boolean) => {
-                    if (!result) {
-                        reject(new Error("Invalid Password"));
-                    }
-                    resolve(user)
-                })
-            }
-        })
+        if (user === null) {
+            throw (new Error("user does not exist!"))
+        }
+        const result: boolean = await bcrypt.compare(password, user.password)
+        if(result) {
+            return user
+        }
+        else {
+            throw(new Error("Invalid Username and password!"))
+        }
     }
 
     public async addNewUser(user: IUser): Promise<IUser> {
-        const userExists: IUser | null = await this.userExists(user.username)
-        return new Promise((resolve, reject) => {
-            if (userExists) {
-                reject(new Error("Username is taken!"))
-            } else {
-                const newUser: IUser = new this.Users(user)
-                const saltRounds = 10;
-                bcrypt.hash(newUser.password, saltRounds).then((hash) => {
-                    newUser.password = hash
-                    newUser.save().then((user: IUser) => {
-                        this.db.close()
-                        resolve(user)
-                    }).catch((errorMessage: string) => {
-                        reject(new Error(errorMessage))
-                    })
-                })
+        const userExists: IUser | null = await this.userExists(user.username);
+        if (userExists) {
+            throw(new Error("Username is taken!"));
+        }
+        else {
+            const newUser: IUser = new this.Users(user)
+            const saltRounds = 10;
+            const hash: string = await bcrypt.hash(newUser.password, saltRounds)
+            newUser.password = hash
+            try {
+                const savedUser: IUser = await newUser.save();
+                this.db.close()
+                return (savedUser)
             }
-        })
+            catch(err: any) {
+                console.log("I have an error")
+                throw(err)
+            }
+        }
     }
 
     public async getUserById(userId: string): Promise<IUser> {
         const user: IUser | null = await this.Users.findById({ _id: userId });
         this.db.close()
-        return new Promise((resolve, reject) => {
-            if (user) {
-                resolve(user)
-            } else {
-                reject(new Error("Invalid user id"))
-            }
-        })
-
+        if (user) {
+            return user
+        }
+        else {
+            throw(new Error("Invalid user id"))
+        }
     }
 
 }
