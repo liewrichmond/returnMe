@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid"
 import { Controller, IReturn, DeliveryStatus } from "../returnsController"
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { setDate } from "date-fns/esm";
 
 interface RetrunsFormProps {
     userId: string | null;
@@ -39,6 +40,8 @@ const ReturnsForm: React.FC<RetrunsFormProps> = (props: RetrunsFormProps) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [formError, setFormError] = useState(true);
     const [helperText, setHelperText] = useState("Choose Delivery Handler")
+    const [dateError, setDateError] = useState(false)
+
     const handleHandlerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         switch ((event.target as HTMLInputElement).value) {
             case "Amazon": {
@@ -59,11 +62,32 @@ const ReturnsForm: React.FC<RetrunsFormProps> = (props: RetrunsFormProps) => {
         setHelperText("")
         setFormError(false)
     };
+
+    const minSelectableDate: Date = new Date()
+    const maxSelectableDate = getMaxSelectableDate()
+
+    function getMaxSelectableDate(): Date {
+        const today = new Date()
+        const oneMonthAway = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate())
+        return oneMonthAway
+    }
+
     const handleDateChange = (date: Date | null) => {
-        setSelectedDate(date);
+        if(date){
+            if(date > minSelectableDate && date < maxSelectableDate) {
+                setDateError(false)
+                setSelectedDate(date);
+            }
+            else {
+                setDateError(true)
+            }
+        }
+        else {
+            setDateError(true)
+        }
     };
     const handleCreateReturnsClick = async () => {
-        if (formError || !handler) {
+        if (formError || !handler || dateError) {
             setHelperText("Please Choose One");
         }
         else {
@@ -116,6 +140,8 @@ const ReturnsForm: React.FC<RetrunsFormProps> = (props: RetrunsFormProps) => {
                                         label="Pick-up date"
                                         value={selectedDate}
                                         onChange={handleDateChange}
+                                        minDate={minSelectableDate}
+                                        maxDate = {maxSelectableDate}
                                         KeyboardButtonProps={{
                                             'aria-label': 'change date',
                                         }}
