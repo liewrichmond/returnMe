@@ -11,7 +11,9 @@ This service solves that. Embrace the laziness. Have people do things for you.
 ## Why? 
 My passion for coding burns deep in my heart if I don't code I will die. Recruiters take note...
 
-## Screenshot
+## Landing Page
 ![Proof](https://github.com/liewrichmond/returnMe/blob/main/images/returnProof1.PNG)
+
+## Login & Application
 ![Proof2](https://github.com/liewrichmond/returnMe/blob/main/images/returnProof2.PNG)
 ![Proof3](https://github.com/liewrichmond/returnMe/blob/main/images/returnProof3.PNG)
